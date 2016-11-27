@@ -3,10 +3,11 @@ class PostsController < ApplicationController
   def index
     # raise UserIsNotAdmin
 
-    @posts = Post.page(params[:page])#.per(10)
+    # @posts = Post.page(params[:page]).select(params[:fields])#.per(10)
+    @posts = Post.all
 
-    render json: @posts
-    # render json: ActiveModel::Serializer::CollectionSerializer.new(@posts, each_serializer: PostSerializer)
+    # render json: @posts
+    render json: ActiveModel::Serializer::CollectionSerializer.new(@posts, each_serializer: PostSerializer)
   end
 
   # GET /posts/1
@@ -33,6 +34,7 @@ class PostsController < ApplicationController
   def update
     post = find_post
     post.update!(post_params)
+    render json: post
   end
 
   # DELETE /posts/1
