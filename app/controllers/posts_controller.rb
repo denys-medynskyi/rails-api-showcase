@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
   # GET /posts
   def index
+    # raise UserIsNotAdmin
+
     @posts = Post.all
 
     render json: @posts
@@ -30,11 +32,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   def update
     post = find_post
-    if post.update(post_params)
-      render json: post
-    else
-      render json: { errors: post.errors }, status: :unprocessable_entity
-    end
+    post.update!(post_params)
   end
 
   # DELETE /posts/1
