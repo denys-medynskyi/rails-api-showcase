@@ -3,8 +3,8 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
 
-    render json: ActiveModel::Serializer::CollectionSerializer.new(@posts, each_serializer: PostSerializer)
-    # render json: @posts
+    render json: @posts
+    # render json: ActiveModel::Serializer::CollectionSerializer.new(@posts, each_serializer: PostSerializer)
   end
 
   # GET /posts/1
