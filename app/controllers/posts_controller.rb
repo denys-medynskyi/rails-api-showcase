@@ -10,6 +10,9 @@ class PostsController < ApplicationController
   # GET /posts/1
   def show
     post = find_post
+    # if stale?(last_modified: post.updated_at)
+    #   render json: post
+    # end
     render json: post
   end
 
