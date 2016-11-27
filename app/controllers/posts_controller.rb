@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   def index
     # raise UserIsNotAdmin
 
-    @posts = Post.all
+    @posts = Post.page(params[:page])#.per(10)
 
     render json: @posts
     # render json: ActiveModel::Serializer::CollectionSerializer.new(@posts, each_serializer: PostSerializer)
