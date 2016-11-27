@@ -44,3 +44,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'dalli', '~> 2.7.4'
 gem 'kaminari'
+gem 'rspec_api_documentation'
+
