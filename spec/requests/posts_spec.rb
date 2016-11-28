@@ -26,7 +26,7 @@ RSpec.describe 'Posts', type: :request do
 
   describe "GET #index" do
     it "assigns all post_instances as @post_instances" do
-      expect(ActiveModel::Serializer::CollectionSerializer).to receive(:new).with([post_instance], each_serializer: PostSerializer).and_call_original
+      expect(ActiveModel::Serializer::CollectionSerializer).to receive(:new).with([post_instance], {:namespace=>nil, :scope=>nil, :scope_name=>:current_user}).and_call_original
 
       get '/posts', params: {}
     end
@@ -36,7 +36,7 @@ RSpec.describe 'Posts', type: :request do
     it "assigns the requested post_instance as @post_instance" do
       # expect(controller).to receive(:find_post) { post_instance }
       # expect(PostSerializer).to receive(:new).with(post_instance).and_call_original
-      expect(PostSerializer).to receive(:new).with(post_instance, {:each_serializer=>PostSerializer}).and_call_original
+      expect(PostSerializer).to receive(:new).with(post_instance, {:namespace=>nil, :scope=>nil, :scope_name=>:current_user}).and_call_original
 
       get '/posts', params: {id: post_instance.to_param}
     end

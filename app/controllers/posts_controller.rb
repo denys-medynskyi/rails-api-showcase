@@ -6,8 +6,8 @@ class PostsController < ApplicationController
     # @posts = Post.page(params[:page]).select(params[:fields])#.per(10)
     @posts = Post.all
 
-    # render json: @posts
-    render json: ActiveModel::Serializer::CollectionSerializer.new(@posts, each_serializer: PostSerializer)
+    render json: @posts
+    # render json: @posts, links: { self: posts_url, meta: { pages: 10 } }
   end
 
   # GET /posts/1
@@ -24,7 +24,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      render json: @post, status: :created, location: @post
+      render json: @post, status: :created
     else
       render json: { errors: @post.errors }, status: :unprocessable_entity
     end
