@@ -6,6 +6,7 @@ class PostsController < ApplicationController
     # @posts = Post.page(params[:page]).select(params[:fields])#.per(10)
     @posts = Post.all
 
+    # render json: ActiveModel::Serializer::CollectionSerializer.new(@posts, each_serializer: PostSerializer)
     render json: @posts
     # render json: @posts, links: { self: posts_url, meta: { pages: 10 } }
   end
@@ -16,6 +17,7 @@ class PostsController < ApplicationController
     # if stale?(last_modified: post.updated_at)
     #   render json: post
     # end
+    # render json: PostSerializer.new(post)
     render json: post
   end
 
